@@ -1,5 +1,17 @@
 import React, { useState, useReducer, useEffect } from "react";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { FirebaseProvider } from "./contexts/FirebaseContext";
+
+import PrivateRoute from "./components/PrivateRoute";
+
+import LoginPage from "./pages/LoginPage";
+
+import AdminPanel from "./pages/AdminPanel";
+
+import { auth } from "./firebaseConfig";
+
 const categories = [
   {
     id: "coffee",
@@ -46,8 +58,7 @@ const categories = [
   {
     id: "hookah",
     name: "Nargile",
-    image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+    image: process.env.PUBLIC_URL + "/images/nargile.jpg",
   },
 ];
 
@@ -124,7 +135,6 @@ const products = [
     image:
       "https://images.unsplash.com/photo-1562967916-eb82221dfb35?auto=format&fit=crop&w=400&q=80",
   },
-  // Nargile ürünleri
   {
     id: "n1",
     category: "hookah",
@@ -224,7 +234,7 @@ function cartReducer(state, action) {
   }
 }
 
-export default function App() {
+function MainMenu() {
   const [isDark, setIsDark] = useDarkMode();
   const theme = isDark ? darkTheme : lightTheme;
 
@@ -234,9 +244,7 @@ export default function App() {
 
   const [cartState, dispatch] = useReducer(cartReducer, { items: {} });
 
-  const filteredProducts = products.filter(
-    (p) => p.category === currentCategory
-  );
+  const filteredProducts = products.filter((p) => p.category === currentCategory);
 
   const itemCount = Object.values(cartState.items).reduce((a, b) => a + b, 0);
 
@@ -245,7 +253,6 @@ export default function App() {
     return acc + (p?.price || 0) * qty;
   }, 0);
 
-  // Styles
   const style = {
     app: {
       fontFamily: "'Poppins', sans-serif",
@@ -558,8 +565,6 @@ export default function App() {
     },
   };
 
-  // Components
-
   function Header() {
     return (
       <header style={style.header}>
@@ -572,7 +577,7 @@ export default function App() {
           onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "rgba(231,84,128,0.15)")}
           onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
         >
-          {isDark ? "☀️" : "🌙"}
+          {isDark ? "\u2600\ufe0f" : "\ud83c\udf19"}
         </button>
       </header>
     );
@@ -618,11 +623,7 @@ export default function App() {
 
   function CategoryGrid() {
     return (
-      <section
-        aria-label="Kategori Listesi"
-        style={style.categoryGrid}
-        role="list"
-      >
+      <section aria-label="Kategori Listesi" style={style.categoryGrid} role="list">
         {categories.map((cat) => (
           <CategoryCard key={cat.id} category={cat} />
         ))}
@@ -689,16 +690,8 @@ export default function App() {
         aria-labelledby="modal-title"
         onClick={onClose}
       >
-        <div
-          style={style.modal}
-          onClick={(e) => e.stopPropagation()}
-          tabIndex={-1}
-        >
-          <button
-            aria-label="Close modal"
-            onClick={onClose}
-            style={style.closeBtn}
-          >
+        <div style={style.modal} onClick={(e) => e.stopPropagation()} tabIndex={-1}>
+          <button aria-label="Close modal" onClick={onClose} style={style.closeBtn}>
             &times;
           </button>
           <img
@@ -719,12 +712,8 @@ export default function App() {
               dispatch({ type: "add", id: product.id });
               onClose();
             }}
-            onMouseOver={(e) =>
-              (e.currentTarget.style.backgroundColor = theme.secondary)
-            }
-            onMouseOut={(e) =>
-              (e.currentTarget.style.backgroundColor = theme.primary)
-            }
+            onMouseOver={(e) => (e.currentTarget.style.backgroundColor = theme.secondary)}
+            onMouseOut={(e) => (e.currentTarget.style.backgroundColor = theme.primary)}
           >
             Sepete Ekle
           </button>
@@ -740,17 +729,11 @@ export default function App() {
         aria-label="Sepeti aç"
         style={style.summaryButton}
         title="Sepetiniz"
-        onMouseOver={(e) =>
-          (e.currentTarget.style.backgroundColor = theme.secondary)
-        }
-        onMouseOut={(e) =>
-          (e.currentTarget.style.backgroundColor = theme.primary)
-        }
+        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = theme.secondary)}
+        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = theme.primary)}
       >
         🛒{" "}
-        {itemCount > 0
-          ? `${itemCount} ürün - ${total} TL`
-          : "Sepetiniz boş"}
+        {itemCount > 0 ? `${itemCount} ürün - ${total} TL` : "Sepetiniz boş"}
       </button>
     );
   }
@@ -766,16 +749,8 @@ export default function App() {
         aria-labelledby="cart-title"
         onClick={onClose}
       >
-        <div
-          style={style.modal}
-          onClick={(e) => e.stopPropagation()}
-          tabIndex={-1}
-        >
-          <button
-            aria-label="Close cart"
-            onClick={onClose}
-            style={style.closeBtn}
-          >
+        <div style={style.modal} onClick={(e) => e.stopPropagation()} tabIndex={-1}>
+          <button aria-label="Close cart" onClick={onClose} style={style.closeBtn}>
             &times;
           </button>
           <h2 id="cart-title" style={style.modalName}>
@@ -795,12 +770,8 @@ export default function App() {
                   onClick={() => dispatch({ type: "remove", id })}
                   style={style.removeBtn}
                   type="button"
-                  onMouseOver={(e) =>
-                    (e.currentTarget.style.color = theme.secondary)
-                  }
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.color = theme.primary)
-                  }
+                  onMouseOver={(e) => (e.currentTarget.style.color = theme.secondary)}
+                  onMouseOut={(e) => (e.currentTarget.style.color = theme.primary)}
                 >
                   &times;
                 </button>
@@ -813,12 +784,8 @@ export default function App() {
               <button
                 onClick={() => dispatch({ type: "clear" })}
                 style={style.clearCartBtn}
-                onMouseOver={(e) =>
-                  (e.currentTarget.style.backgroundColor = theme.secondary)
-                }
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.backgroundColor = theme.primary)
-                }
+                onMouseOver={(e) => (e.currentTarget.style.backgroundColor = theme.secondary)}
+                onMouseOut={(e) => (e.currentTarget.style.backgroundColor = theme.primary)}
               >
                 Sepeti Temizle
               </button>
@@ -840,31 +807,42 @@ export default function App() {
               onClick={() => setCurrentCategory(null)}
               style={style.backButton}
               aria-label="Geri dön"
-              onMouseOver={(e) =>
-                (e.currentTarget.style.backgroundColor = theme.secondary)
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.backgroundColor = theme.primary)
-              }
+              onMouseOver={(e) => (e.currentTarget.style.backgroundColor = theme.secondary)}
+              onMouseOut={(e) => (e.currentTarget.style.backgroundColor = theme.primary)}
             >
               ← Kategorilere Dön
             </button>
-            <ProductList
-              products={filteredProducts}
-              onProductClick={setProductDetailId}
-            />
+            <ProductList products={filteredProducts} onProductClick={setProductDetailId} />
           </>
         )}
 
         <CartSummaryButton onOpenCart={() => setCartOpen(true)} />
         {cartOpen && <CartDetailModal onClose={() => setCartOpen(false)} />}
         {productDetailId && (
-          <ProductDetailModal
-            id={productDetailId}
-            onClose={() => setProductDetailId(null)}
-          />
+          <ProductDetailModal id={productDetailId} onClose={() => setProductDetailId(null)} />
         )}
       </main>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <FirebaseProvider>
+      <BrowserRouter basename="/mor-lounge">
+        <Routes>
+          <Route path="/" element={<MainMenu />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute auth={auth}>
+                <AdminPanel />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </FirebaseProvider>
   );
 }
