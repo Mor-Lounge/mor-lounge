@@ -22,43 +22,42 @@ const categories = [
   {
     id: "tea",
     name: "Tea",
-    image:
-      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=600&q=80",
+    image:"https://images.unsplash.com/photo-1702353918836-33e8c1f06c3a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1931",
   },
   {
     id: "pastries",
     name: "Pastries",
     image:
-      "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1609590981063-d495e2914ce4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=764",
   },
   {
     id: "cold",
     name: "Cold Drinks",
     image:
-      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80",
+      "https://plus.unsplash.com/premium_photo-1664472688479-167c2b9ff0f7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=897",
   },
   {
     id: "smoothies",
     name: "Smoothies",
     image:
-      "https://images.unsplash.com/photo-1505253210343-7a8f8e0a2a1d?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2016",
   },
   {
     id: "desserts",
     name: "Desserts",
     image:
-      "https://images.unsplash.com/photo-1562440499-2a41f63d9c7e?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
   },
   {
     id: "sandwiches",
     name: "Sandwiches",
     image:
-      "https://images.unsplash.com/photo-1562967916-eb82221dfb35?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2073",
   },
   {
     id: "hookah",
     name: "Nargile",
-    image: "/mor-lounge/images/nargile.jpg",
+    image: "https://images.unsplash.com/photo-1662805522314-d316b95046b1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1974",
   },
 ];
 const products = [
