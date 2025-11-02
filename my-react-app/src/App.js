@@ -58,7 +58,7 @@ const categories = [
   {
     id: "hookah",
     name: "Nargile",
-    image: process.env.PUBLIC_URL + "/mor-lounge/images/nargile.jpg",
+    image: "/mor-lounge/images/nargile.jpg",
   },
 ];
 const products = [
