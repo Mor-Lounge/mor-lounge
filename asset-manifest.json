@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/mor-lounge/static/css/main.e6c13ad2.css",
-    "main.js": "/mor-lounge/static/js/main.07e38747.js",
+    "main.js": "/mor-lounge/static/js/main.5303a18d.js",
     "static/js/453.311b3dbc.chunk.js": "/mor-lounge/static/js/453.311b3dbc.chunk.js",
     "index.html": "/mor-lounge/index.html",
     "main.e6c13ad2.css.map": "/mor-lounge/static/css/main.e6c13ad2.css.map",
-    "main.07e38747.js.map": "/mor-lounge/static/js/main.07e38747.js.map",
+    "main.5303a18d.js.map": "/mor-lounge/static/js/main.5303a18d.js.map",
     "453.311b3dbc.chunk.js.map": "/mor-lounge/static/js/453.311b3dbc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.07e38747.js"
+    "static/js/main.5303a18d.js"
   ]
 }
