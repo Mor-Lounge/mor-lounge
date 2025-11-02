@@ -80,6 +80,15 @@ const products = [
       "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80",
   },
   {
+    id: "c3",
+    category: "coffee",
+    name: "Mocha",
+    description: "Creamy milk with espresso",
+    price: 150,
+    image:
+      "https://images.unsplash.com/photo-1618576230663-9714aecfb99a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+  },
+  {
     id: "t1",
     category: "tea",
     name: "Green Tea",
